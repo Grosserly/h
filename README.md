@@ -4,4 +4,4 @@ Unfortunately, it is impossible to download `.php` files you don't own, so I can
 
 I did not make [finalboss.org/h/](finalboss.org/h/), pls no sue.
 
-[https://grosserly.github.io/h/h/](https://grosserly.github.io/h/h/)
+[https://grosserly.github.io/h/](https://grosserly.github.io/h/)
