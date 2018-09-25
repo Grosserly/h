@@ -1,0 +1,107 @@
+body {
+    background: #000 url('r.gif');
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#h {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('h.png');
+}
+
+.bg {
+    height: 21px;
+    background: #000 url('r.gif');
+}
+
+.row1 {
+    background-position: -570px;
+}
+
+.row2 {
+    background-position: -60px;
+}
+
+.row3 {
+    background-position: -30px;
+}
+
+.row4 {
+    background-position: -120px;
+}
+
+.row5 {
+    background-position: -90px;
+}
+
+.row6 {
+    background-position: -180px;
+}
+
+.row7 {
+    background-position: -150px;
+}
+
+.row8 {
+    background-position: -240px;
+}
+
+.row9 {
+    background-position: -210px;
+}
+
+.row10 {
+    background-position: -300px;
+}
+
+.row11 {
+    background-position: -270px;
+}
+
+.row12 {
+    background-position: -360px;
+}
+
+.row13 {
+    background-position: -330px;
+}
+
+.row14 {
+    background-position: -420px;
+}
+
+.row15 {
+    background-position: -390px;
+}
+
+.row16 {
+    background-position: -480px;
+}
+
+.row17 {
+    background-position: -450px;
+}
+
+.row18 {
+    background-position: -540px;
+}
+
+.row19 {
+    background-position: -510px;
+}
+
+.row20 {
+    background-position: 0px;
+}
+
+.block {
+    position: absolute;
+    background-color: #fff;
+    width: 15px;
+    height: 21px;
+}
