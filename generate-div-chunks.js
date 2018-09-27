@@ -12,10 +12,10 @@ function generateDivChunks(bgHeight = 21) {
     var made;
     var rowNum;
     
-    for (made = 0; made < needed; made++) { // Make needed many chunks
-        for (rowNum = 1; rowNum < bgHeight; rowNum++) { // I'm sorry... index starts at 1 because the div ID's do :(
+    for (made = 0; made < needed; made++) {                 // Make [needed] many chunks
+        for (rowNum = 1; rowNum < bgHeight; rowNum++) {     // I'm sorry... index starts at 1 because the div ID's do :(
             var currentDiv = document.createElement("div"); // Create a div
-            currentDiv.className = "bg row" + rowNum;       // Add its class information
+            currentDiv.className = "bg row" + rowNum;       // Add its class information with rowNum
             document.body.appendChild(currentDiv);          // Inject it to the bottom of <body>
         }
     }
