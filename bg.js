@@ -5,7 +5,9 @@
 
 
 (function($) {
-	if(!document.defaultView || !document.defaultView.getComputedStyle){ // IE6-IE8
+	/* Code to work in browsers that nobody should be using anymore anyway
+    
+    if(!document.defaultView || !document.defaultView.getComputedStyle){ // IE6-IE8
 		var oldCurCSS = jQuery.curCSS;
 		jQuery.curCSS = function(elem, name, force){
 			if(name === 'background-position'){
@@ -20,7 +22,7 @@
 			}
 			return oldCurCSS(elem, 'backgroundPositionX', force) +' '+ oldCurCSS(elem, 'backgroundPositionY', force);
 		};
-	}
+	}*/
 	
 	var oldAnim = $.fn.animate;
 	$.fn.animate = function(prop){
@@ -31,7 +33,7 @@
 		if('backgroundPosition' in prop){
 			prop.backgroundPosition = '('+ prop.backgroundPosition;
 		}
-		return oldAnim.apply(this, arguments);
+		return oldAnim.apply(this, arguments);o
 	};
 	
 	function toArray(strg){
