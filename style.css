@@ -1,5 +1,4 @@
 body {
-    background: #000 url('r.gif');
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -11,12 +10,12 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background: url('h.png');
+    background: url("h.png");
 }
 
 .bg {
     height: 21px;
-    background: #000 url('r.gif');
+    background: #000 url("r.gif");
 }
 
 .row1 {
