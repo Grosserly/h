@@ -4,17 +4,18 @@
 <html>
     <head>
         <title>h</title>
-        <link href="../h.png" rel="icon" type="image/png">
+        <link href="../h.png"     rel="icon"       type="image/png">
         <link href="../style.css" rel="stylesheet" type="text/css">
+        
         <script type="text/javascript" src="../jquery.min.js"></script>
         <script type="text/javascript" src="../bg.js"></script>
         <script type="text/javascript" src="../move-bg-around.js"></script>
         <script type="text/javascript" src="../generate-div-chunks.js"></script>
         <script type="text/javascript">
         
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             generateDivChunks(1); // set div height to 1 instead of its default of 21
-            moveBgAround(0);
+            moveBgAround();
         });
 
         </script>
