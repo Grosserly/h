@@ -16,7 +16,7 @@ function generateBgRows(bgRowHeight) {
     for (var made = 0; made < needed; made++) {       // Make [needed] many chunks
         for (var rowNum = 1; rowNum < 21; rowNum++) { // This is a different 21 from the default bgRowHeight. This one is 20 bg rows in the CSS + 1.
             var currentDiv = document.createElement("div"); // Create a div
-            currentDiv.className = "bg row" + (rowNum + 1); // Give it its class information with rowNum + 1 to match the number it should have from the CSS
+            currentDiv.setAttribute("class", "bg row" + (rowNum + 1)); // Give it its class information with rowNum + 1 to match the number it should have from the CSS
             document.body.appendChild(currentDiv);          // Inject it to the bottom of <body>
         }
     }
