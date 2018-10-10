@@ -3,16 +3,9 @@
 <!-- like h, but with 1px-tall divs instead of 21px-tall divs -->
 <html>
     <head>
-        <title>h</title>
+        <title>dense</title>
         <link href="../h.png"     rel="icon"       type="image/png">
         <link href="../style.css" rel="stylesheet" type="text/css">
-        <style>
-            .bg {
-                height: 1px;
-                background: #000 url("../r.gif");
-            }
-        </style>
-        
         <script type="text/javascript" src="../jquery.min.js"></script>
         <script type="text/javascript" src="../bg.js"></script>
         <script type="text/javascript" src="../move-bg-around.js"></script>
@@ -20,14 +13,14 @@
         <script type="text/javascript">
         
         document.addEventListener('DOMContentLoaded', function() {
-            generateBgRows(1); // set div height to 1 instead of its default of 21
+            generateBgRows(1); // Set the bg divs' height to 1px instead of its default of 21px
             moveBgAround();
         });
 
         </script>
     </head>
     <body>
-        <audio src="../a.mp3" type="audio/mpeg" autoplay loop></audio>
+        <audio src="../monty.ogg" type="audio/ogg" autoplay loop></audio>
         <div id="h"></div>
     </body>
 </html>
