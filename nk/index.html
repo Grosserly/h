@@ -12,9 +12,15 @@
         <script type="text/javascript" src="../bg.js"></script>
         <script type="text/javascript" src="../move-bg-around.js"></script>
         <script type="text/javascript" src="../generate-bg-rows.js"></script>
+        <script type="text/javascript" src="../make-text.js"></script>
+        <script type="text/javascript" src="../divide-string.js"></script>
         <script type="text/javascript">
         
         document.addEventListener('DOMContentLoaded', function() {
+            const dividedString = divideString("Nate Kean");
+            const textWidth     = 97;
+            makeText(dividedString, textWidth);
+            
             generateBgRows();
             moveBgAround();
         });
@@ -22,7 +28,6 @@
         </script>
     </head>
     <body>
-        <!--<audio src="../monty.ogg" type="audio/ogg" autoplay loop></audio>-->
-        <div id="h" style="background: url('nk.png');"></div>  <!-- nk.png instead of h.png -->
+        <div id="text"></div>
     </body>
 </html>
