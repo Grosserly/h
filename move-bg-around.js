@@ -8,7 +8,7 @@ function moveBgAround(xFactor, yFactor, timeFactor) {
     var xDest = -1 * (Math.floor(Math.random() * 201));
     var yDest = -1 * (Math.floor(Math.random() * 201));
     var time  =       Math.floor(Math.random() * 1001) + 2000;
-    $("#h").animate({
+    $("#text").animate({
         backgroundPosition: "(" + xDest + "px " + yDest + "px)"
     }, time, "swing", function() {
         moveBgAround(xFactor, yFactor, timeFactor);
