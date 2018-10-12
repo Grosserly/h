@@ -10,9 +10,15 @@
         <script type="text/javascript" src="bg.js"></script>
         <script type="text/javascript" src="move-bg-around.js"></script>
         <script type="text/javascript" src="generate-bg-rows.js"></script>
+        <script type="text/javascript" src="make-text.js"></script>
+        <script type="text/javascript" src="divide-string.js"></script>
         <script type="text/javascript">
         
         document.addEventListener('DOMContentLoaded', function() {
+            const dividedString = divideString();
+            const textWidth     = undefined;
+            makeText(dividedString, textWidth);
+            
             generateBgRows();
             moveBgAround();
         });
@@ -21,6 +27,6 @@
     </head>
     <body>
         <audio src="monty.ogg" type="audio/ogg" autoplay loop></audio>
-        <div id="h"></div>
+        <div id="text"></div>
     </body>
 </html>
