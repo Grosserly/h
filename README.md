@@ -18,7 +18,11 @@ The original used raster graphics for the text. When you were to zoom in then, t
 2. Scalable to any size while retaining quality
 3. Custom text can now be accomplished without the need for PHP
 
-I'm still working on that last one. But it'll be here Soon™!
+  Old really close up           |  New really close up
+:------------------------------:|:---------------------------:
+  ![Blurry h's](raster.png)     |  ![Crisp h's](vector.png)
+
+**I'm still working on that last one. But it'll be here Soon™!**
 
 ## TODO
 - Replicate FinalBoss's SPA functionality
