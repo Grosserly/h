@@ -26,7 +26,7 @@ The original used raster graphics for the text. When you were to zoom in then, t
 
 ## TODO
 - Replicate FinalBoss's SPA functionality
-- Do away with redundant pages (like /r/) in favor of if-statements in `h.js` that modify the site as needed
+- Handle special pages (like /r/) with if-statements in `h.js` instead of redundant pages
 
 ---
 <sub>A _huge_ thank you to the person/people behind [finalboss.org](https://finalboss.org/). You (all) are my inspiration.</sub>
