@@ -25,5 +25,4 @@ I'm still working on that last one. But it'll be here Soon™!
 - Do away with redundant pages (like /r/) in favor of if-statements in `h.js` that modify the site as needed
 
 ---
-
-<sub>I didn't make [finalboss.org/h/](finalboss.org/h/) pls no sue</sub>
+<sub>A _huge_ thank you to the person/people behind [finalboss.org](https://finalboss.org/). You (all) are my inspiration.</sub>
