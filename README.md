@@ -10,7 +10,7 @@ The original had hardcoded `div`s that offset the rainbow background. This versi
 
   Offset background                    |  Not-offset background
 :-------------------------------------:|:-------------------------------------:
-  ![Offset background](offset.png)     |  ![Not-offset background](not-offset.png)
+  ![Offset background](readme/offset.png)     |  ![Not-offset background](readme/not-offset.png)
 
 
 The original used raster graphics for the text. When you were to zoom in then, the text would get blurry and have soft edges, as all raster images do. In my version, vector graphics are used instead, leading to three improvements:
@@ -20,7 +20,7 @@ The original used raster graphics for the text. When you were to zoom in then, t
 
   Old really close up           |  New really close up
 :------------------------------:|:---------------------------:
-  ![Blurry h's](raster.png)     |  ![Crisp h's](vector.png)
+  ![Blurry h's](readme/raster.png)     |  ![Crisp h's](readme/vector.png)
 
 **I'm still working on that last one. But it'll be here Soon™!**
 
