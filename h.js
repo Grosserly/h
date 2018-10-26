@@ -1,4 +1,6 @@
 
+spaIfy();
+
 /**
  *  The Big Boy
  *  This is where everything comes together.
@@ -16,8 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var bgRowHeight = 21;
     var textDiv     = document.getElementById("text");
     var audioFile   = "flower.mp3"; // Set false for no audio
-
-
+    
     var srch = window.location.search;
     
     if (srch.includes("?p=/")) {
@@ -48,8 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             width = textWidth(text);
         }
     }
-
-    spaIfy();
 
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
