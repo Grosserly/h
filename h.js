@@ -17,36 +17,39 @@ document.addEventListener('DOMContentLoaded', function() {
     var textDiv     = document.getElementById("text");
     var audioFile   = "flower.mp3"; // Set false for no audio
 
-    if (window.location.search) {
-        var srch = window.location.search;
-        
-        if (srch.includes("?p=r")) {
-            title = "r";
-            text = false;
 
-        } else if (srch.includes("?p=autism")) {
+    var srch = window.location.search;
+    
+    if (srch.includes("?p=/")) {
+        var query = srch.substring(4); // Everything after ?p="
+        
+        if (query == "r") {
+            title = "r";
+            text  = false;
+
+        } else if (query == "autism") {
             title = "Y O U H A V E";
             text  = "A U T I S M";
             width = 100;
             audioFile = "monty.ogg";
 
-        } else if (srch.includes("?p=dense")) {
+        } else if (query == "dense") {
             title = "dense";
             bgRowHeight = 1;
 
-        } else if (srch.includes("?p=nk")) {
+        } else if (query == "nk")) {
             title = "Me";
             text  = "Nate Kean";
             width = 97;
             audioFile = false;
 
-        } else if (srch.includes("?p=")) { // TODO: Rearrange these statements so this one goes first
-            text = srch.substring(3); // Everything after "?p="
+        } else {
+            text  = query;
             width = textWidth(text);
         }
     }
 
-    spaInate(); // TODO: Uncomment this when h is fully functional
+    //spaIfy(); // TODO: Uncomment this when h is fully functional
 
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
  *  the correct url will be waiting in the browser's history for
  *  the single page app to route accordingly.
 */
-function spaInate() {
+function spaIfy() {
 
     var l = window.location;
     
@@ -113,7 +116,7 @@ function spaInate() {
 function textWidth(text) {
     var myCanvas = document.createElement("canvas");
     var context = myCanvas.getContext("2d");
-    context.font = "20px sans-serif";
+    context.font = "19px Arial";
     
     var metrics = context.measureText(text);
     return metrics.width;
