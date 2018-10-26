@@ -22,7 +22,6 @@ The original used raster graphics for the text. When you were to zoom in then, t
 :------------------------------:|:---------------------------:
   ![Blurry h's](readme/raster.png)     |  ![Crisp h's](readme/vector.png)
 
-**I'm still working on that last one. But it'll be here Soon™!**
 
 ## TODO
 - ¯\\\_(ツ)\_/¯
