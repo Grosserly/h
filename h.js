@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var srch = window.location.search;
     
     if (srch.includes("?p=/")) {
-        var query = srch.substring(4); // Everything after ?p="
+        var query = srch.substring(5); // Everything after ?p=/"
         
         if (query == "r") {
             title = "r";
