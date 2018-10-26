@@ -1,5 +1,9 @@
 
-spaIfy();
+(function() {
+	
+    spaIfy();
+    
+})();
 
 /**
  *  The Big Boy
