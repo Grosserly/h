@@ -1,62 +1,142 @@
 
 /**
- * The Big Boy
- * This is where everything comes together.
+ *  The Big Boy
+ *  This is where everything comes together.
  * 
- * Once the HTML is ready, this function builds the site.
- * TODO: Finish the docstring once this is actually done
+ *  Once the HTML is ready, this function builds the site.
+ *  TODO: Finish the docstring once this is actually done
 */
 document.addEventListener('DOMContentLoaded', function() {
-// TODO: Add if statement to set different parameters based on the URL
 
+    var title       = "h";
+    var text        = "h"; // Set false for no text
+    var width       = 14;
+    var height      = 38;
+    var fontSize    = 20;
+    var bgRowHeight = 21;
+    var textDiv     = document.getElementById("text");
+    var audioFile   = "flower.mp3"; // Set false for no audio
 
-
-    if (1 + 1 == 2) {
-
-        var title       = "h";
-        var text        = "h";
-        var width       = 14;
-        var height      = 38;
-        var fontSize    = 20;
-        var bgRowHeight = 21;
-        var textDiv     = document.getElementById("text");
-
-    } else if (1 + 1 == 5) {
-    //placeholder
-    }
+    if (window.location.search) {
+        var srch = window.location.search;
         
-    document.title = title; // Set tab's title
+        if (srch.includes("?p=r")) {
+            title = "r";
+            text = false;
 
-    var dividedString;
-    dividedString = divideString(text);                // If something goes wrong, this will return False
-    if (dividedString === false) { dividedString = ["h","h"]; } // Fall back to h's if False
+        } else if (srch.includes("?p=autism")) {
+            title = "Y O U H A V E";
+            text  = "A U T I S M";
+            width = 100;
+            audioFile = "monty.ogg";
+
+        } else if (srch.includes("?p=dense")) {
+            title = "dense";
+            bgRowHeight = 1;
+
+        } else if (srch.includes("?p=nk")) {
+            title = "Me";
+            text  = "Nate Kean";
+            width = 97;
+            audioFile = false;
+
+        } else if (srch.includes("?p=")) { // TODO: Rearrange these statements so this one goes first
+            text = srch.substring(3); // Everything after "?p="
+            width = textWidth(text);
+        }
+    }
+
+    spaInate(); // TODO: Uncomment this when h is fully functional
+
+    if (audioFile) {
+        var audioPlayer = new Audio(audioFile);
+        audioPlayer.play();
+    }
+
+    document.title = title;
     
-    var textSVG = makeTextSVG(dividedString, width, height, fontSize);
-
-    var styleInfo = "background-image:url(" + textSVG + ");"; // Set the background for element selected in textDiv 
-    textDiv.setAttribute("style",styleInfo);                  // to the SVG that was just generated 
-
     generateBgRows(bgRowHeight); // Generate the background divs that offset the rainbow pattern
-    moveTextAround();
+
+    if (text) {
+        var dividedString = divideString(text);            // If something goes wrong, this will return False
+        if (!dividedString) { dividedString = ["h","h"]; } // Fall back to h's if False
+
+        var textSVG = makeTextSVG(dividedString, width, height, fontSize);
+
+        var styleInfo = "background-image:url(" + textSVG + ");"; // Set the background for element selected in textDiv 
+        textDiv.setAttribute("style",styleInfo);                  // to the SVG that was just generated 
+        
+        moveTextAround();
+    }
 });
 
+
 /**
- * Divide String
- * Takes a string, returns a list with two strings
- * 
- * Example:
- * Input:  "1234"
- * Output: ["1234","34 12"]
+ *  Single Page Apps for GitHub Pages
+ *  https://github.com/rafrex/spa-github-pages
+ *  Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+ *  ----------------------------------------------------------------------
+ *  This script checks to see if a redirect is present in the query string
+ *  and converts it back into the correct url and adds it to the
+ *  browser's history using window.history.replaceState(...),
+ *  which won't cause the browser to attempt to load the new url.
+ *  When the single page app is loaded further down in this file,
+ *  the correct url will be waiting in the browser's history for
+ *  the single page app to route accordingly.
+*/
+function spaInate() {
+
+    var l = window.location;
+    
+    if (l.search) {
+        var q = {};
+        l.search.slice(1).split('&').forEach(function(v) {
+            var a = v.split('=');
+            q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+        });
+        if (q.p !== undefined) {
+            window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + (q.p || '') +
+                (q.q ? ('?' + q.q) : '') +
+                l.hash
+            );
+}}}
+
+
+/**
+ *  Text Width
+ *  Given text, calculate its width in px
+ *  
+ *  Input:  String
+ *  Output: Whole number
+*/
+function textWidth(text) {
+    var myCanvas = document.createElement("canvas");
+    var context = myCanvas.getContext("2d");
+    context.font = "20px sans-serif";
+    
+    var metrics = context.measureText(text);
+    return metrics.width;
+};
+
+
+/**
+ *  Divide String
+ *  Takes a string, returns a list with two strings
+ *  
+ *  Example:
+ *  Input:  "1234"
+ *  Output: ["1234","34 12"]
  *
- * Used for turning this:
- * 1234 1234
- * 1234 1234
- * 1234 1234
+ *  Used for turning this:
+ *  1234 1234
+ *  1234 1234
+ *  1234 1234
  *
- * Into:
- * 1234 1234
- * 34 1234 3
- * 1234 1234
+ *  Into:
+ *  1234 1234
+ *  34 1234 3
+ *  1234 1234
 */
 function divideString(string) {
 
@@ -92,28 +172,25 @@ function divideString(string) {
 
 
 /**
- * Make Text SVG
+ *  Make Text SVG
+ *  Puts together an SVG from a template and some parameters
  * 
- * Input:  a list of two strings, the width and height for the SVG, and the text's size
- * Output: SVG data with quotes around it
+ *  Input:  a list of two strings, the width and height for the SVG, and the text's size
+ *  Output: SVG data with quotes around it
  *
- * This will be used as the background-image for #text
+ *  This is used for #text's background-image.
  */
 function makeTextSVG(stringList, width, height, fontSize) {
-
-    // SVG data
-    var svg = "\"data:image/svg+xml;uft8,<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='" + width + "' height='" + height + "'><rect width='100%' height='100%' fill='#000' x='0' y='0' fill-opacity='1' mask='url(#mask)' /><mask id='mask'><rect width='100%' height='100%' fill='#fff' x='0' y='0' /><text x='0' y='15' font-family='sans-serif' font-size='" + fontSize + "' fill='#000'>" + stringList[0] + "</text><text x='0' y='34' font-family='sans-serif' font-size='" + fontSize + "' fill='#000'>" + stringList[1] + "</text></mask></svg>\""
-
-    return svg;
+    return "\"data:image/svg+xml;uft8,<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='" + width + "' height='" + height + "'><rect width='100%' height='100%' fill='#000' x='0' y='0' fill-opacity='1' mask='url(#mask)' /><mask id='mask'><rect width='100%' height='100%' fill='#fff' x='0' y='0' /><text x='0' y='15' font-family='sans-serif' font-size='" + fontSize + "' fill='#000'>" + stringList[0] + "</text><text x='0' y='34' font-family='sans-serif' font-size='" + fontSize + "' fill='#000'>" + stringList[1] + "</text></mask></svg>\"";
 
 }
 
 
 /**
- * bg.js
- * I have no idea how this works
- * @author Alexander Farkas
- * v. 1.21
+ *  bg.js
+ *  I have no idea how this works
+ *  @author Alexander Farkas
+ *  v. 1.21
  */
 (function($) {
 
@@ -166,14 +243,14 @@ function makeTextSVG(stringList, width, height, fontSize) {
 
 
 /**
-*   Generate BG Rows
-*   Generate bg rows in groups of 20 that offset the background's rainbow texture
-*
-*   Example of a div it makes:
-*   <div class="bg row1" style="height:21px"></div>
+ *  Generate BG Rows
+ *  Generate bg rows in groups of 20 that offset the background's rainbow texture
+ *
+ *  Example of a div it makes:
+ *  <div class="bg row1" style="height:21px"></div>
 */
 function generateBgRows(bgRowHeight) {
-    
+
     function _makeARow(rowNum, bgRowHeight) {
         var currentDiv = document.createElement("div"); // Create a div
         var classInfo = "bg row" + rowNum;
@@ -183,17 +260,17 @@ function generateBgRows(bgRowHeight) {
         document.body.appendChild(currentDiv);          // Inject it to the bottom of <body>
     }
 
-
     var needed = Math.ceil((screen.height * 5) / bgRowHeight);
-    var rowNum = 0;
+    var rowNum = 1;
 
-    for (var made = 0; made < needed; made++) {       // Make [needed] many chunks
-        if (rowNum < 20) {
-            _makeARow(rowNum + 1, bgRowHeight);
+    while (needed > 0) { // Make [needed] many chunks
+        if (rowNum < 21) {
+            _makeARow(rowNum, bgRowHeight);
             rowNum++;
         } else {
-            rowNum = 0;
+            rowNum = 1;
         }
+        needed--;
     }
 
     /*var needed = Math.ceil((screen.height * 5) / (20 * bgRowHeight));
@@ -206,12 +283,12 @@ function generateBgRows(bgRowHeight) {
 
 
 /**
- * Move Text Around
- * Moves the text around to random places on the screen
+ *  Move Text Around
+ *  Moves the text around to random places on the screen
  *
- * Pick a random x value, y value, and time value
- * Move the text to that position on the screen in that amount of time
- * Repeat forever
+ *  Pick a random x value, y value, and time value
+ *  Move the text to that position on the screen in that amount of time
+ *  Repeat forever
 */
 function moveTextAround() {
 
