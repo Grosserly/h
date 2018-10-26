@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    //spaIfy(); // TODO: Uncomment this when h is fully functional
+    spaIfy();
 
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
