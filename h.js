@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title = "dense";
             bgRowHeight = 1;
 
-        } else if (query == "nk")) {
+        } else if (query == "nk") {
             title = "Me";
             text  = "Nate Kean";
             width = 97;
