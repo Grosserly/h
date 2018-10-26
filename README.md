@@ -24,7 +24,8 @@ The original used raster graphics for the text. When you were to zoom in then, t
 
 
 ## TODO
-- ¯\\\_(ツ)\_/¯
+- Debug SPA functionality
+- Finish the main method's docstring
 
 ---
 ## A _huge_ thank you to:
