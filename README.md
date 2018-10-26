@@ -25,8 +25,9 @@ The original used raster graphics for the text. When you were to zoom in then, t
 **I'm still working on that last one. But it'll be here Soon™!**
 
 ## TODO
-- Replicate FinalBoss's SPA functionality
-- Handle special pages (like /r/) with if-statements in `h.js` instead of redundant pages
+- ¯\\\_(ツ)\_/¯
 
 ---
-<sub>A _huge_ thank you to the person/people behind [finalboss.org](https://finalboss.org/). You (all) are my inspiration.</sub>
+## A _huge_ thank you to:
+- The person/people behind [finalboss.org](https://finalboss.org/). You (all) are my inspiration.
+- [Rafrex](https://github.com/rafrex), who made [Single Page Apps for GitHub Pages](https://github.com/rafrex/spa-github-pages).
