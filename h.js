@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if ((srch) && (srch.includes("?p=/"))) {
 	    
         var query = decodeURIComponent(srch.substring(4)); // Everything after "?p=/"
+	alert(query);
         
         if (query == "r") {
             title = "r";
