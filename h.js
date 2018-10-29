@@ -1,11 +1,4 @@
 
-/*(function() {
-	
-    spaIfy();
-    
-})();*/
-
-
 /**
  *  The Big Boy
  *  This is where everything comes together.
@@ -28,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if ((srch) && (srch.includes("?p=/"))) {
 	    
-        var query = srch.substring(4); // Everything after ?p=/"
+        var query = srch.substring(5); // Everything after ?p=/"
         alert("If: " + query); // debug
         
         if (query == "r") {
@@ -59,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         alert("Else: " + query);
     }
-    
-    alert("End: " + query);
     
     spaIfy();
 	
