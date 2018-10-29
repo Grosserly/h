@@ -5,7 +5,7 @@
  * 
  *  Once the HTML is ready, this function builds the site.
  *  TODO: Finish the docstring once this is actually done
-*/
+ */
 document.addEventListener('DOMContentLoaded', function() {
 
     var title       = "h";
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
  *  When the single page app is loaded further down in this file,
  *  the correct url will be waiting in the browser's history for
  *  the single page app to route accordingly.
-*/
+ */
 function spaIfy() {
 
     var l = window.location;
@@ -147,7 +147,7 @@ function textWidth(text) {
  *  1234 1234
  *  34 1234 3
  *  1234 1234
-*/
+ */
 function divideString(string) {
 
     const ORIGINAL    = string;
@@ -258,7 +258,7 @@ function makeTextSVG(stringList, width, height, fontSize) {
  *
  *  Example of a div it makes:
  *  <div class="bg row1" style="height:21px"></div>
-*/
+ */
 function generateBgRows(bgRowHeight) {
 
     function _makeARow(rowNum, bgRowHeight) {
@@ -299,7 +299,7 @@ function generateBgRows(bgRowHeight) {
  *  Pick a random x value, y value, and time value
  *  Move the text to that position on the screen in that amount of time
  *  Repeat forever
-*/
+ */
 function moveTextAround() {
 
     var xDest = -1 * (Math.floor(Math.random() * 201));
