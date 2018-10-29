@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if ((srch) && (srch.includes("?p=/"))) {
 	    
-        var query = srch.substring(4); // Everything after ?p=/"
-        alert(window.location.search + "\n" + query); // debug
+        var query = decodeURIComponent(srch.substring(4)); // Everything after "?p=/"
         
         if (query == "r") {
             title = "r";
@@ -47,10 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             text  = query;
             width = textWidth(text);
-        }
-	    
-    } else {
-        alert("Else: " + query);
+        }   
     }
     
     spaIfy();
