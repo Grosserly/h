@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var query = decodeURIComponent(srch.substring(4)); // Everything after "?p=/"
         
         // Add space at the beginning of text with a space in it, so the SVG text gets spaced properly
-	    if ((query.includes(" ")) && (query.substring(0) != " ")) { // If text has a space and it's not at the beginning
+	    if ((query.includes(" ")) && (!query.substring(0) == " ")) { // If text has a space and it's not at the beginning
             query = " " + query // Add a space
         }
         
