@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if ((srch) && (srch.includes("?p=/"))) {
 	    
         var query = srch; // Everything after ?p=/"
-        alert("If: " + query); // debug
+        alert("If\n" + window.location.search + "\n" + srch.substring(1)); // debug
         
         if (query == "r") {
             title = "r";
