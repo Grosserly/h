@@ -59,7 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }// else {
      //   alert("Must not be anything after /h/");
     //}
-        
+    
+    alert("d");
+    
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
         audioPlayer.play();
