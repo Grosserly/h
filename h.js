@@ -1,9 +1,9 @@
 
-(function() {
+/*(function() {
 	
     spaIfy();
     
-})();
+})();*/
 
 
 /**
@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     alert("End: " + query);
     
+    spaIfy();
+	
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
         audioPlayer.play();
