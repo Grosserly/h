@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var srch = window.location.search;
     
     if (srch.includes("?p=/")) {
+	    
         var query = srch.substring(3); // Everything after ?p=/"
         alert(query); // debug
         
@@ -53,9 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
             text  = query;
             width = textWidth(text);
         }
-    } else {
-        alert("Must not be anything after /h/");
-    }
+	    
+    }// else {
+     //   alert("Must not be anything after /h/");
+    //}
         
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     generateBgRows(bgRowHeight); // Generate the background divs that offset the rainbow pattern
 
     if (text) {
+	    
         var dividedString = divideString(text); // If something goes wrong, this will return False
         if (!dividedString)
             dividedString = ["h","h"]; // Fall back to h's if False
@@ -77,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         textDiv.setAttribute("style",styleInfo);                  // to the SVG that was just generated 
         
         moveTextAround();
+	    
     }
 });
 
