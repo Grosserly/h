@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if ((srch) && (srch.includes("?p=/"))) {
 	    
-        var query = srch; // Everything after ?p=/"
-        alert("If\n" + window.location.search + "\n" + srch.substring(1)); // debug
+        var query = srch.substring(4); // Everything after ?p=/"
+        alert(window.location.search + "\n" + query); // debug
         
         if (query == "r") {
             title = "r";
