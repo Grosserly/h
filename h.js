@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } else if (query == "autism") {
             title = "Y O U H A V E";
-            text  = "A U T I S M";
+            text  = " A U T I S M";
             width = 100;
             audioFile = "monty.ogg";
 
