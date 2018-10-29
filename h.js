@@ -53,8 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
             text  = query;
             width = textWidth(text);
         }
-    }
-
+    } else {
+        alert("Must not be anything after /h/");
+        
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
         audioPlayer.play();
