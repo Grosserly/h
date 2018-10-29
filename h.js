@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if ((srch) && (srch.includes("?p=/"))) {
 	    
         var query = srch.substring(3); // Everything after ?p=/"
-        alert(query); // debug
+        alert("If: " + query); // debug
         
         if (query == "r") {
             title = "r";
@@ -56,11 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
             width = textWidth(text);
         }
 	    
-    }// else {
-     //   alert("Must not be anything after /h/");
-    //}
+    } else {
+        alert("Else: " + query);
+    }
     
-    alert("d");
+    alert("End: " + query);
     
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
