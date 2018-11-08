@@ -4,7 +4,18 @@
  *  This is where everything comes together.
  * 
  *  Once the HTML is ready, this function builds the site.
- *  TODO: Finish the docstring once this is actually done
+ *  
+ *  1. Set parameters for things like the page title and the text content (from the "?p=" parameter provided by 404.html)
+ *  2. Modify the URL bar to make the "?p=" parameter look like a path
+ *  3. Play the selected audio file (if not false)
+ *  4. Set the page title to the title parameter
+ *  5. Make bg rows to offset the rainbow pattern (r.gif)
+ *  6. Make an SVG containing a black rectangle with a cutout of the selected text (so the rainbow background shows through it)
+ *       Since it goes into CSS's background-image, it tiles by default, filling the whole page with its beauty
+ *  7. Move the text around indefinitely
+ *
+ *  Result: rainbow text flying around the screen with Brazilian Flower playing in the background
+ *  I can't believe I spent one year working on this
  */
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -283,13 +294,6 @@ function generateBgRows(bgRowHeight) {
         }
         needed--;
     }
-
-    /*var needed = Math.ceil((screen.height * 5) / (20 * bgRowHeight));
-    for (var made = 0; made < needed; made++) {       // Make [needed] many chunks
-        for (var rowNum = 0; rowNum < 20; rowNum++) { // 20 is how many rows there are in the CSS
-            _makeARow(rowNum + 1, bgRowHeight); // Index of the for loop starts at 0, but the index of the bg row numbers in the CSS starts at 1
-        }
-    }*/
 }
 
 
