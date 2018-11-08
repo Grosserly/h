@@ -8,8 +8,8 @@ Actually this turned out to really be a benefit. The fact that I had to rewrite 
 ## There are two front-end differences between this and the original:
 The original had hardcoded `div`s that offset the rainbow background. Since there was always a fixed number of `div`s, there was a limit to how far you could zoom out before the background stopped being diagonal. This version uses JavaScript to generate as many `div`s the browser needs to fit the whole page, even when zoomed out to 25%. This actually reduces file size compared to the original, since the code needed to make the `div`s dynamically turned out to take up less space than the original's hardcoded `div`s. Furthermore, the original's file size would have to grow with more `div`s. When they are generated with JavaScript, the file size stays the same, no matter how many it makes.
 
-  Offset background                    |  Not-offset background
-:-------------------------------------:|:-------------------------------------:
+  Fully offset background                     |  Not fully offset background
+:--------------------------------------------:|:-------------------------------------:
   ![Offset background](readme/offset.png)     |  ![Not-offset background](readme/not-offset.png)
 
 
