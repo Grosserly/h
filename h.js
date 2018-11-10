@@ -1,4 +1,8 @@
 
+document.ontouchmove = function (e) { // Prevent scrolling on mobile
+  e.preventDefault();
+}
+
 /**
  *  The Big Boy
  *  This is where everything comes together.
@@ -69,10 +73,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
+	    
 	audioPlayer.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
-}, false);
+        }, false);
+	    
         audioPlayer.play();
     }
 
