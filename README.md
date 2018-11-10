@@ -24,8 +24,8 @@ The original used raster graphics for the text. When you were to zoom in then, t
 
 
 ## TODO
-- Figure out why spacing for long strings sometimes becomes inaccurate
-- Uh, like, fix that
+- Fix spacing for long strings sometimes becoming inaccurate
+- Fix text not showing up in FireFox
 
 ---
 ## A _huge_ thank you to:
