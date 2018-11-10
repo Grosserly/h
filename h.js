@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	
     if (audioFile) {
         var audioPlayer = new Audio(audioFile);
+	audioPlayer.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+}, false);
         audioPlayer.play();
     }
 
