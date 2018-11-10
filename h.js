@@ -1,8 +1,4 @@
 
-document.ontouchmove = function (e) { // Prevent scrolling on mobile
-  e.preventDefault();
-}
-
 /**
  *  The Big Boy
  *  This is where everything comes together.
