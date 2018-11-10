@@ -26,6 +26,8 @@ The original used raster graphics for the text. When you were to zoom in then, t
 ## TODO
 - Fix spacing for long strings sometimes becoming inaccurate
 - Fix text not showing up in FireFox
+- Fix text not spanning the whole page on iOS
+- Fix SVG having margins that shouldn't be there on iOS
 
 ---
 ## A _huge_ thank you to:
