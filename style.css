@@ -4,6 +4,10 @@
     overflow: hidden;
 }
 
+body {
+    position:relative;
+}
+
 #text {
     position: absolute;
     top: 0;
