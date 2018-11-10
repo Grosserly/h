@@ -14,9 +14,9 @@ The original had hardcoded `div`s that offset the rainbow background. Since ther
 
 
 The original used raster graphics for the text. When you were to zoom in then, the text would get blurry and have soft edges, as all raster images do. In my version, vector graphics are used instead, leading to three improvements:
-1. The vector I use is smaller than the original's 15x21 PNG
+1. The vector is smaller than the original's 15x21 PNG
 2. Scalable to any size while retaining quality
-3. Custom text can now be accomplished without the need for PHP
+3. No PHP
 
   Old really close up           |  New really close up
 :------------------------------:|:---------------------------:
