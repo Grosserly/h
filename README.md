@@ -31,3 +31,4 @@ The original used raster graphics for the text. When you were to zoom in then, t
 ## A _huge_ thank you to:
 - The person/people behind [finalboss.org](https://finalboss.org/). You (all) are my inspiration.
 - [Rafrex](https://github.com/rafrex), who made [Single Page Apps for GitHub Pages](https://github.com/rafrex/spa-github-pages).
+- The [Ooers](https://www.reddit.com/r/ooer) (a tech support forum), for helping me debug on other platforms
