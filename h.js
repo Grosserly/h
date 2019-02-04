@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	let height      = 38;
 	let fontSize    = 20;
 	let bgRowHeight = 21;
-	var textDiv     = document.getElementById("text");
+	let textDiv     = document.getElementById("text");
 	let audioFile   = "flower.mp3"; // Set false for no audio
 	
 	let srch = window.location.search;
