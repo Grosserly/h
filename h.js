@@ -57,12 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		}   
 	}
 
-	spaIfy();
-
-	document.title = title;
-
-	generateBgRows(bgRowHeight, 42); // Generate the background divs that offset the rainbow pattern
-
 	if (text) {
 
 		let dividedString = divideString(text);
@@ -73,6 +67,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 		moveAround(textDiv);
 	}
+
+	spaIfy();
+
+	document.title = title;
+
+	generateBgRows(bgRowHeight, 42); // Generate the background divs that offset the rainbow pattern
 
 	if (audioFile) {
 		const audioPlayer = new Audio(audioFile);
