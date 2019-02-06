@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 		// Add space at the beginning of text with a space in it, so the SVG text gets spaced properly
 		if ((query.includes(" ")) && (query.charAt(0) != " ")) { // If text has a space and it's not at the beginning
-			query = " " + query // Add a space
+			query = " " + query; // Add a space
 		}
 		
 		if (query == "r") {
@@ -59,20 +59,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	if (text) {
 
-		let dividedString = divideString(text);
-		dividedString = dividedString || ["h","h"]; // Fall back to h's if divideString returns false
-
-		let textSVG = generateSVGCode(dividedString, width, height, fontSize);
-		textDiv.setAttribute("style", "background-image: url(" + textSVG + ");");
-		
 		moveAround(textDiv);
+
+		let textSVG = generateSVGCode(text, width, height, fontSize);
+		textDiv.setAttribute("style", `background-image: url(${textSVG});`);
+		
 	}
 
 	spaIfy();
 
 	document.title = title;
 
-	generateBgRows(bgRowHeight, 42); // Generate the background divs that offset the rainbow pattern
+	generateBgRows(bgRowHeight, bgRowHeight); // Generate the background divs that offset the rainbow pattern
 
 	if (audioFile) {
 		const audioPlayer = new Audio(audioFile);
@@ -136,71 +134,73 @@ function textWidth(text, font) {
 
 
 /**
- *  Divide String
- *  Takes a string, returns a list with two strings
- *
- *  I initially wrote this in Python and you can
- *  tell because it SUCKS lol
- *  
- *  Example:
- *  Input:  "1234"
- *  Output: ["1234","34 12"]
- *
- *  Used for turning this:
- *  1234 1234
- *  1234 1234
- *  1234 1234
- *
- *  Into:
- *  1234 1234
- *  34 1234 3
- *  1234 1234
- */
-function divideString(string) {
-
-    const ORIGINAL    = string;
-    const LEN         = string.length;
-    let   midpoint    = 0;
-    let   firstHalf   = "";
-    let   secondHalf  = "";
-    let   stringList  = [];
-
-    if (LEN == 1) // Don't bother scrambling the text if it's only one character long
-        return [ORIGINAL,ORIGINAL];
-
-	if (LEN % 2 == 0) { // If the text's length is an even number,
-        midpoint = LEN / 2;    // put Midpoint at half its length
-    } else { // Text's length is an odd number,
-        midpoint = (LEN - 1) / 2; // so put Midpoint 1 to the left of half its length
-    }
-
-    // "This is where the fun begins." -- Anakin Skywalker
-    try {
-        firstHalf  = string.substring(0,midpoint); // "1234" -> "12"
-        secondHalf = string.substring(midpoint);   // "1234" -> "34"
-        string = secondHalf + " " + firstHalf;     // "34 12"
-
-        stringList = [ORIGINAL,string];
-
-        return stringList;
-    } catch(err) {
-        return false;
-    }
-}
-
-
-/**
  *  Make Text SVG
  *  Puts together an SVG from a template and some parameters
  * 
- *  Input:  a list of two strings, the width and height for the SVG, and the text's size
+ *  Input:  a string, the width and height for the SVG, and the text's size
  *  Output: SVG data with quotes around it
  *
  *  This is used for #text's background-image.
  */
-function generateSVGCode(stringList, width, height, fontSize) {
-    return "\"data:image/svg+xml;uft8,<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='" + width + "' height='" + height + "'><rect width='100%' height='100%' fill='#000' x='0' y='0' fill-opacity='1' mask='url(#mask)' /><mask id='mask'><rect width='100%' height='100%' fill='#fff' x='0' y='0' /><text x='0' y='15' font-family='sans-serif' font-size='" + fontSize + "' fill='#000'>" + stringList[0] + "</text><text x='0' y='34' font-family='sans-serif' font-size='" + fontSize + "' fill='#000'>" + stringList[1] + "</text></mask></svg>\"";
+function generateSVGCode(string, width, height, fontSize) {
 
+	let stringList = _divideString(string) || ["h","h"];
+    return `"data:image/svg+xml;uft8,<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='${width}' height='${height}'><rect width='100%' height='100%' fill='#000' x='0' y='0' fill-opacity='1' mask='url(#mask)' /><mask id='mask'><rect width='100%' height='100%' fill='#fff' x='0' y='0' /><text x='0' y='15' font-family='sans-serif' font-size='${fontSize}' fill='#000'>${stringList[0]}</text><text x='0' y='34' font-family='sans-serif' font-size='${fontSize}' fill='#000'>${stringList[1]}</text></mask></svg>"`;
+
+	/**
+	 *  Divide String
+	 *  Takes a string, returns a list with two strings
+	 *
+	 *  I initially wrote this in Python and you can
+	 *  tell because it SUCKS lol
+	 *  
+	 *  Example:
+	 *  Input:  "1234"
+	 *  Output: ["1234","34 12"]
+	 *
+	 *  Used for turning this:
+	 *  1234 1234
+	 *  1234 1234
+	 *  1234 1234
+	 *
+	 *  Into:
+	 *  1234 1234
+	 *  34 1234 3
+	 *  1234 1234
+	 */
+	function _divideString(string) {
+
+		const ORIGINAL = string;
+		const LEN      = string.length;
+
+		if (LEN == 1) // Don't bother scrambling the text if it's only one character long
+			return [ORIGINAL,ORIGINAL];
+
+		let midpoint   = 0;
+		let firstHalf  = "";
+		let secondHalf = "";
+		let stringList = [];
+
+		if (LEN % 2 == 0) { // If the text's length is an even number,
+			midpoint = LEN / 2;    // put Midpoint at half its length
+		} else { // Text's length is an odd number;
+			midpoint = (LEN - 1) / 2; // put Midpoint 1 to the left of half its length
+		}
+
+		// "This is where the fun begins." -- Anakin Skywalker
+		try {
+			firstHalf  = string.substring(0,midpoint); // "1234" -> "12"
+			secondHalf = string.substring(midpoint);   // "1234" -> "34"
+			string = secondHalf + " " + firstHalf;     // "34 12"
+
+			stringList = [ORIGINAL,string];
+
+			return stringList;
+		} catch(err) {
+			return false;
+		}
+
+	}
 }
 
 
@@ -242,11 +242,11 @@ function generateBgRows(bgRowHeight, offsetAmount) {
  */
 function moveAround(el) {
 
-    let xDest   = Math.floor(Math.random() * -201);
-    let yDest   = Math.floor(Math.random() * -201);
-    let time    = Math.floor(Math.random() * 3) + 3; // in seconds
+    let xDest = Math.floor(Math.random() * -201);
+    let yDest = Math.floor(Math.random() * -201);
+    let time  = Math.floor(Math.random() * 3) + 3; // in seconds
 
-	el.style.transition = "left " + time + "s, top " + time + "s"; // CSS uses seconds
+	el.style.transition = `left ${time}s, top ${time}s`; // CSS uses seconds
 	el.style.left = xDest + "px";
 	el.style.top  = yDest + "px";
 
