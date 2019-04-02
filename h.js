@@ -3,15 +3,17 @@
  *  The Big Boy
  *  This is where everything comes together.
  * 
- *  Once the HTML is ready, this function builds the site.
+ *  Once the DOM is ready, this function builds the site.
  *  
- *  1. Set parameters for things like the page title and the text content (from the "?p=" parameter provided by 404.html)
+ *  1. Set parameters for things like the page title and the text content
+ * 		(from the "?p=" parameter provided by 404.html)
  *  2. Modify the URL bar to make the "?p=" parameter look like a path
  *  3. Play the selected audio file (if not false)
- *  4. Set the page title to the title parameter
- *  5. Make bg rows to offset the rainbow pattern (r.gif)
- *  6. Make an SVG containing a black rectangle with a cutout of the selected text (so the rainbow background shows through it)
- *       Since it goes into CSS's background-image, it tiles by default, filling the whole page with its beauty
+ *  4. Set the page title to the title variable
+ *  5. Make BG rows to make the rainbow look diagonal
+ *  6. Make an SVG containing a black rectangle with a cutout of the selected text
+ * 		(so the rainbow background shows through it)
+ *      CSS makes the image tile forever, filling the whole page with its beauty
  *  7. Move the text around indefinitely
  *
  *  Result: rainbow text flying around the screen with Brazilian Flower playing in the background
@@ -21,11 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 	let title       = "h";
 	let text        = "h"; // Set false for no text
-	let width       = 14;
-	let height      = 38;
-	let fontSize    = 20;
-	let bgRowHeight = 21;
-	let textDiv     = document.getElementById("text");
+	let fontSize    = 24;
+	let bgRowHeight = 20;
+	let container   = document.getElementById("h");
 	let audioFile   = "flower.mp3"; // Set false for no audio
 	
 	let srch = window.location.search;
@@ -53,16 +53,19 @@ document.addEventListener("DOMContentLoaded", function() {
 		} else {
 			title = query;
 			text  = query;
-			width = textWidth(text, "19px Arial");
 		}   
 	}
 
 	if (text) {
 
-		moveAround(textDiv);
-
-		let textSVG = generateSVGCode(text, width, height, fontSize);
-		textDiv.setAttribute("style", `background-image: url(${textSVG});`);
+		let tilingText = document.createElement("div");
+		container.innerHTML = text + "<br>" + divideString(text);
+		tilingText.textContent = " ";
+		tilingText.id = "tiling-text";
+		document.body.appendChild(tilingText);
+		
+		moveAround(tilingText);
+		
 		
 	}
 
@@ -74,8 +77,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	if (audioFile) {
 		const audioPlayer = new Audio(audioFile);
-		audioPlayer.play();
-			
+
+		// Weird StackOverflow code to play a media object without making Chrome angry
+		const playPromise = audioPlayer.play();
+		if (playPromise !== undefined)
+			playPromise.then(_ => {}).catch(error => {});
+
 		audioPlayer.addEventListener("ended", function() {
 			this.currentTime = 0;
 			this.play();
@@ -117,90 +124,48 @@ function spaIfy() {
 
 
 /**
- *  Text Width
- *  Given text, calculate its width in px
- *  
- *  Input:  String
- *  Output: Whole number
-*/
-function textWidth(text, font) {
-    let myCanvas = document.createElement("canvas");
-    let context = myCanvas.getContext("2d");
-    context.font = font;
-    
-    let metrics = context.measureText(text);
-    return metrics.width;
-};
-
-
-/**
- *  Make Text SVG
- *  Puts together an SVG from a template and some parameters
- * 
- *  Input:  a string, the width and height for the SVG, and the text's size
- *  Output: SVG data with quotes around it
+ *  Divide String
+ *  Returns the divided version of a string
  *
- *  This is used for #text's background-image.
+ *  I initially wrote this in Python and you
+ *  can really tell because it SUCKS lol
+ *  
+ *  Example:
+ *  Input:  "1234"
+ *  Output: "34 12"
+ *
+ *  Used for turning this:
+ *  1234 1234
+ *  1234 1234
+ *  1234 1234
+ *
+ *  Into this:
+ *  1234 1234
+ *  34 1234 3
+ *  1234 1234
  */
-function generateSVGCode(string, width, height, fontSize) {
+function divideString(string) {
 
-	let stringList = _divideString(string) || ["h","h"];
-    return `"data:image/svg+xml;uft8,<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='${width}' height='${height}'><rect width='100%' height='100%' fill='#000' x='0' y='0' fill-opacity='1' mask='url(#mask)' /><mask id='mask'><rect width='100%' height='100%' fill='#fff' x='0' y='0' /><text x='0' y='15' font-family='sans-serif' font-size='${fontSize}' fill='#000'>${stringList[0]}</text><text x='0' y='34' font-family='sans-serif' font-size='${fontSize}' fill='#000'>${stringList[1]}</text></mask></svg>"`;
+	const ORIGINAL = string;
+	const LEN      = string.length;
 
-	/**
-	 *  Divide String
-	 *  Takes a string, returns a list with two strings
-	 *
-	 *  I initially wrote this in Python and you can
-	 *  tell because it SUCKS lol
-	 *  
-	 *  Example:
-	 *  Input:  "1234"
-	 *  Output: ["1234","34 12"]
-	 *
-	 *  Used for turning this:
-	 *  1234 1234
-	 *  1234 1234
-	 *  1234 1234
-	 *
-	 *  Into:
-	 *  1234 1234
-	 *  34 1234 3
-	 *  1234 1234
-	 */
-	function _divideString(string) {
+	if (LEN == 1) // Don't bother doing anything if it's only one character long
+		return ORIGINAL;
 
-		const ORIGINAL = string;
-		const LEN      = string.length;
+	let midpoint   = 0;
+	let firstHalf  = "";
+	let secondHalf = "";
 
-		if (LEN == 1) // Don't bother scrambling the text if it's only one character long
-			return [ORIGINAL,ORIGINAL];
+	if (LEN % 2 == 0) // If the text's length is an even number,
+		midpoint = LEN / 2;    // put Midpoint at half its length
+	else // Text's length is an odd number;
+		midpoint = (LEN - 1) / 2; // put Midpoint 1 to the left of half its length
 
-		let midpoint   = 0;
-		let firstHalf  = "";
-		let secondHalf = "";
-		let stringList = [];
+	firstHalf  = string.substring(0,midpoint); // "1234" -> "12"
+	secondHalf = string.substring(midpoint);   // "1234" -> "34"
+	string = secondHalf + " " + firstHalf;     // "34 12"
+	return string;
 
-		if (LEN % 2 == 0) { // If the text's length is an even number,
-			midpoint = LEN / 2;    // put Midpoint at half its length
-		} else { // Text's length is an odd number;
-			midpoint = (LEN - 1) / 2; // put Midpoint 1 to the left of half its length
-		}
-
-		// "This is where the fun begins." -- Anakin Skywalker
-		try {
-			firstHalf  = string.substring(0,midpoint); // "1234" -> "12"
-			secondHalf = string.substring(midpoint);   // "1234" -> "34"
-			string = secondHalf + " " + firstHalf;     // "34 12"
-
-			stringList = [ORIGINAL,string];
-
-			return stringList;
-		} catch(err) {
-			return false;
-		}
-
-	}
 }
 
 
@@ -219,7 +184,7 @@ function generateBgRows(bgRowHeight, offsetAmount) {
 
     function _makeARow(rowNum) {
         let newDiv = masterDiv.cloneNode(false); // Create a div
-        newDiv.style.backgroundPosition = rowNum*offsetAmount + "px";
+        newDiv.style.backgroundPosition = rowNum*offsetAmount%screen.width + "px";
         document.body.appendChild(newDiv);       // Inject it to the bottom of <body>
     }
 

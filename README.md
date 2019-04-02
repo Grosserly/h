@@ -1,7 +1,5 @@
 # h
 
-## i broke it
-
 My custom version of [finalboss.org/h/](finalboss.org/h/), (in)complete with several special pages and a MowtenDoo reference.
 
 ## There are two front-end differences between this and the original:
