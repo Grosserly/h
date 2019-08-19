@@ -27,6 +27,7 @@ The original had hardcoded `div`s that offset the rainbow background. Since ther
 ## TODO
 - Fix spacing for long strings sometimes becoming inaccurate
 - Fix SVG having margins that shouldn't be there on iOS(?)
+- Un-break it lol
 
 ---
 ## A _huge_ thank you to:
