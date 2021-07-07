@@ -1,36 +1,29 @@
 # h
 
-My custom version of [finalboss.org/h/](finalboss.org/h/), (in)complete with several special pages and a MowtenDoo reference.
+An improved remake of [finalboss.org/h/](finalboss.org/h/)
 
-## There are two front-end differences between this and the original:
-### Vector graphics
-Unfortunately, it is impossible to download `.php` files you don't own, so I can't get the orignal's `text.php`. `text.php` is what enabled the site to make a PNG out of text on the fly, so users could put whatever text they wanted on the site. However, even if I _did_ have it, I wouldn't be able to use it in GitHub Pages because PHP isn't supported here, anyway.
-But- this actually turned out to really be a benefit. The fact that I then had to rewrite `text.php`'s functionality caused me to come across a better™ solution -- SVG!
-
-The original used raster graphics for the text. When you were to zoom in then, the text would get blurry and have soft edges, as all raster images do. In my version, vector graphics are used instead, leading to three improvements:
-1. The vector is smaller than the original's 15x21 PNG
-2. Scalable to any size while retaining quality
-3. No PHP
+### Infinite detail
+[finalboss.org/h/](finalboss.org/h/) uses traditional raster image files to achieve its effect. When you zoom in, the text becomes blurry and the divisions between the colors of the rainbow background become visible. In this version, both the text and the rainbow background are programmed as SVG instead.
 
   Old really close up           |  New really close up
 :------------------------------:|:---------------------------:
-  ![Blurry h's](readme/raster.png)     |  ![Crisp h's](readme/vector.png)
+  ![Blurry h's](readme/old-up-close.png)     |  ![Crisp h's](readme/new-up-close.png)
 
-### Dynamic div construction
-The original had hardcoded `div`s that offset the rainbow background. Since there was always a fixed number of `div`s, there was a limit to how far you could zoom out before the background stopped being diagonal. This version uses JavaScript to generate as many `div`s the browser needs to fit the whole page, even when zoomed out to 25%. This actually reduces file size too. Compared to the original, the code needed to generate `div`s turned out to take up less space.
+### Infinite size
+The original uses `<div>`s for each "strip" of the diagonally-staggered rainbow background. Since there is a fixed number of `<div>`s, there is a limit to how far you can zoom out before you reach the end of the `<div>`s and the background stops being staggered. With SVG, a single set of rainbow strips can be tiled infinitely using the `<pattern>` tag, making it so that you can zoom out as far as you want and the effect will never stop.
 
-  Not fully offset background                 |  Fully offset background
+  Not fully staggered background                 |  Fully staggered background
 :--------------------------------------------:|:-------------------------------------:
-  ![Picture of h where background isn't fully offset](readme/not-fully-offset.png) | ![Picture of h where background IS fully offset](readme/offset.png)
+  ![Picture of h where background isn't fully staggered](readme/not-fully-staggered.png) | ![Picture of h where background IS fully staggered](readme/fully-staggered.png)
 
+### Unlocked framerate
+The original uses a GIF for the moving rainbow background. As it is a GIF, the effect only has so many frames of animation. In this version, the effect is pulled off with an animated SVG pattern that moves as finely as your display's refresh rate will allow.
 
-## TODO
-- Fix spacing for long strings sometimes becoming inaccurate
-- Fix SVG having margins that shouldn't be there on iOS(?)
-- Un-break it lol
+## To do
+- Add the music back
+- Create a visualization for the framerate explanation
 
 ---
 ## A _huge_ thank you to:
 - The person/people behind [finalboss.org](https://finalboss.org/). You (all) are my inspiration.
-- [Rafrex](https://github.com/rafrex), who made [Single Page Apps for GitHub Pages](https://github.com/rafrex/spa-github-pages).
-- [Ooer](https://www.reddit.com/r/ooer) (a tech support forum), for helping me debug on additional platforms.
+- [Ooer](https://www.reddit.com/r/ooer) (a tech support forum), for helping me debug across multiple platforms.
