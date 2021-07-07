@@ -34,7 +34,7 @@
 	function updateText(event) {
 		event?.preventDefault();
 		const text = window.location.hash.slice(1) || "h";
-		textElement.textContent = text;
+		textElement.textContent = decodeURIComponent(text);
 		patternElement.setAttribute(
 			"width",
 			getTextWidth(text, "16pt sans-serif") + 4
