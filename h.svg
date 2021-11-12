@@ -62,7 +62,7 @@
         
             <mask id="knockout">
                 <rect width="100%" height="100%" fill="#fff" />
-                <text id="text" y="0.75em" fill="#000">h</text>
+                <text id="text" y="0.75em" fill="#000" font-family="sans-serif">h</text>
             </mask>
 
             <animate id="text-x"
