@@ -22,6 +22,7 @@ The original uses a GIF for the moving rainbow background. As it is a GIF, the e
 ## To do
 - Add the music back
 - Create a visualization for the framerate explanation
+- Fix text spacing for custom text
 
 ---
 ## A _huge_ thank you to:
